@@ -19,17 +19,13 @@ public class PointController {
 
     // 특정 유저 포인트 조회
     @GetMapping("{id}")
-    public UserPoint point(
-            @PathVariable long id
-    ) {
+    public UserPoint point(@PathVariable long id) {
         return pointService.selectPoint(id);
     }
 
     // 특정 유저 포인트 충전/이용 내역 조회
     @GetMapping("{id}/histories")
-    public List<PointHistory> history(
-            @PathVariable long id
-    ) {
+    public List<PointHistory> history(@PathVariable long id) {
         return pointService.selectPointHistory(id);
     }
 
@@ -48,10 +44,8 @@ public class PointController {
      * 5. 시스템 에러 > DB 오류, 네트워크 에러 등
      */
     @PatchMapping("{id}/charge")
-    public UserPoint charge(
-            @PathVariable long id,
-            @RequestBody long amount
-    ) {
+    public UserPoint charge(@PathVariable long id,
+                            @RequestBody long amount) {
         return pointService.insertPoint(id, amount);
     }
 
@@ -71,10 +65,8 @@ public class PointController {
      * 7. 시스템 에러 > DB 오류, 네트워크 에러 등
      */
     @PatchMapping("{id}/use")
-    public UserPoint use(
-            @PathVariable long id,
-            @RequestBody long amount
-    ) {
+    public UserPoint use(@PathVariable long id,
+                         @RequestBody long amount) {
         return pointService.updatePoint(id, amount);
     }
 }
